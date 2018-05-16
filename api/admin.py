@@ -18,7 +18,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
     
     
-#admin.site.register(Mall)
+
 admin.site.register(Shop)
 admin.site.register(Employee)
 admin.site.register(Category)
@@ -28,52 +28,6 @@ admin.site.register(ProductType)
 admin.site.register(UserProfile)
 admin.site.register(Order)
 admin.site.register(WishList)
-#admin.site.empty_value_display = '(None)'
-#admin.site.register(Cart)
-# we can register more than on model class at admin site in django 2.0
-#@admin.register(Employee, Mall, ShopType)// used for custom admin site( site=custom_admin_site)
-#@admin.register(WishList)
-#class AuthorAdmin(admin.ModelAdmin):
- #  pass
-#class FlatPageAdmin(admin.ModelAdmin):
- #   fields = ('url', 'title', 'content')
-    
-"""class UserProfileinline(admin.StackedInline):
-    model = UserProfile
-    can_delete = False
-    verbose_name_plural = 'User'
-
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'address')
-    
-##class UserAdmin(BaseUserAdmin):
-    ##inlines = (UserProfileinline, )
-admin.autodiscover()
-admin.site.unregister(User)
-admin.site.register(UserProfile, UserProfileAdmin)"""
-
-
-"""class CustomUserAdmin(UserAdmin):
-    fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (('Personal info'), {'fields': ('first_name', 'last_name', 'address', 'phone')}),
-        (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups', 'user_permissions')}),
-        (('Important dates'), {'fields': ('last_login', 'date_joined')}),
-    )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
-        ),
-    )
-    form = CustomUserChangeForm
-    add_form = CustomUserCreationForm
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
-    search_fields = ('email', 'first_name', 'last_name')
-    ordering = ('email',)
-
-admin.site.register(CustomUser, CustomUserAdmin)"""
 
 
 class UserCreationFormExtended(UserCreationForm): 
@@ -104,10 +58,3 @@ class UserAdmin(BaseUserAdmin):
     
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)   
-
-#class UserAdmin(admin.ModelAdmin):
-    #model = User
-    #list_per_page = 5 
-    
-
-
