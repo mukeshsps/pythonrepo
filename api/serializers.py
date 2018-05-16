@@ -21,27 +21,6 @@ class ShopSerializer(serializers.ModelSerializer):
         model = Shop
         fields = ('id', 'SName', 'SCategory', 'Shop_number', 'Shop_type', 'S_status', 'Product_type', 'Shop_location')#, 'date_created', 'date_modified')
         #read_only_fields = ('date_created', 'date_modified')
-        
-"""class UserSerializer(serializers.ModelSerializer):
-    full_name = serializers.CharField(source='UserProfile.full_name')
-    address = serializers.CharField(source='UserProfile.full_name')
-    phone_number = serializers.CharField(source='UserProfile.full_name')        
-        
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'password', 'full_name', 'address', 'phone_number')
-        #read_only_fields = ('date_created', 'date_modified') 
-    #def create(self, validated_data, attrs, instance=None):
-    def create(self, attrs, instance=None):
-        if instance is not None:
-            instance.full_name = attrs.get('fullname', instance.full_name)
-            instance.address = attrs.get('address', instance.address)
-            instance.phone_number = attrs.get('phone_number', instance.phone_number)
-            return instance
-        user = User.objects.create_user(username=attrs.get('user.username'), email= attrs.get('user.email'), password=attrs.get('user.password'))
-        user.save()
-        #return serializers.ModelSerializer.create(self, validated_data, user=user)
-        return User(user)"""
     
 class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
@@ -65,43 +44,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile 
         error_messages = {"full_name": {"required": "Give yourself a full_name"}}
         fields = ('full_name', 'address', 'phone_number')
-    
-    """def create(self, validated_data):
-        profile_data = validated_data.pop('user')
-        user = UserProfile.objects.create(**validated_data)
-        User.objects.create(user=user, **profile_data)
-        return user"""
-    
-"""
-def to_representation(self, instance):
-        representation = super(UserSerializer, self).to_representation(instance)
-        representation['UserProfile'] = UserProfileSerializer(instance.UserProfile_set.all(), many=True).data
-        return representation"""  
-        
-"""class UserProfileSerializer(serializers.ModelSerializer):
-    #id = serializers.IntegerField(source='user.id')
-    username = serializers.CharField(source='user.username')
-    email = serializers.CharField(source='user.email')
-    password = serializers.CharField(source='user.password')
-    #full_name = serializers.CharField(source='UserProfile.full_name') 
-    #address = serializers.CharField(source='UserProfile.address')
-    #phone_number = serializers.CharField(source='UserProfile.phone_number')
-    class Meta:
-        model = UserProfile 
-        fields = ('username','full_name', 'address', 'phone_number', 'email', 'password')
-        
-    def create(self, attrs, instance=None):
-        if instance is not None:
-            #instance.id = attrs.get('id', instance.id)
-            instance.username = attrs.get('username', instance.username)
-            instance.email = attrs.get('email', instance.email)
-            instance.password = attrs.get('password', instance.password)
-            return instance.string.strip()
-        print("instance")
-        #user = User.objects.create_user(username=attrs.get('user.username'), email= attrs.get('user.email'), password=attrs.get('user.password'))
-        user = User.objects.create_user(username=User.username,password=User.password,email=User.email)
-        return UserProfile(user)"""    
-    
+     
     
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
