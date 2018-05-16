@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^login/$', auth_views.login, name='login'),
 ]
-admin.site.site_header = ("E-Mall Site Administration")
-admin.site.site_title = ("My E-Mall Site Admin")
-admin.site.site_url = 'https://www.facebook.com'
-admin.site.index_title = 'Mukesh site'
+admin.site.site_header = ("E-Mall Site Administration")#Modify admin Site header
+admin.site.site_title = ("My E-Mall Site Admin")#Modify admin site title
+admin.site.site_url = 'https://www.facebook.com'#Place your site url here
+admin.site.index_title = 'Mukesh site'#Modify admin site index page title
