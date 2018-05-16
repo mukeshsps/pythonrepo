@@ -27,4 +27,4 @@ python3 manage.py migrate
 python3 manage.py createsuperuser
 
 -project run on server using command-
-python3 manage.py runserver 153.163.0.432:8000#  you can put your custom ip-address and port number
+python3 manage.py runserver 153.163.0.32:8000#  you can put your custom ip-address and port number
