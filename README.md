@@ -1,5 +1,5 @@
 # Python_Django_Repository
-#Before start to work in django we need to install pyhton in our local machine then install django MVT framework using command prompt . version of python is your chioce you can choose 2.0 version and 3.0 version. 
+Before start to work in django we need to install pyhton in our local machine then install django MVT framework using command prompt . version of python is your chioce you can choose 2.0 version and 3.0 version. 
 
 -install django using command-
 pip3 install django
@@ -27,4 +27,4 @@ python3 manage.py migrate
 python3 manage.py createsuperuser
 
 -project run on server using command-
-python3 manage.py runserver 153.163.0.32:8000#  you can put your custom ip-address and port number
+python3 manage.py runserver 153.163.0.32:8000- you can put your custom ip-address and port number
