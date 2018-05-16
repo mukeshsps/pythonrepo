@@ -15,12 +15,12 @@ python3 manage.py startapp yourappname
 
 -register your app into installed_app of settings.py file
 
-- configure new database into DATABASE field of settings.py
+-configure new database into DATABASE field of settings.py
 
 -migration with database using command inside your project directory-
 python3 manage.py makemigrations
 
-- command for migrate-
+-command for migrate-
 python3 manage.py migrate
  
 -create super user using command -
