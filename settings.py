@@ -86,13 +86,14 @@ WSGI_APPLICATION = 'EMall.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+#It is default database used in django
 """DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }"""
+#user can set his own database by change database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
