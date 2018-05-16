@@ -63,16 +63,7 @@ class LocaleMiddleware(object):
         translation.deactivate()
         return response
 
-"""class LocaleMiddleware(object):
-    def __init__(self, get_response):
-        self.get_response = get_response
-        
-    def __call__(self, request):
-        language_code = 'ar' 
-        translation.activate(language_code)
-        response = self.get_response(request)
-        translation.deactivate()
-        return response"""
+
 
         
 class createMallView(generics.ListCreateAPIView):
@@ -142,33 +133,7 @@ class detailsProductView(generics.RetrieveAPIView):
         serializer = ProductSerializer(queryset, many=False)
         pdata = {'status':200,'response':serializer.data,'msg':"product successfully displayed"}
         return Response(pdata)
-"""@api_view(['POST'])
-@permission_classes((AllowAny,))     
-def ProductDetails(request):
-    queryset = Product.objects.all()
-    serializer = ProductSerializer(data=request.data)
-    if serializer.is_valid():
-        pdata = {'status':200, 'response':serializer.data, 'msg':"product successfully displayed"}
-        return Response(pdata)
-    
-class productdetails(generics.RetrieveAPIView):
-    permission_classes = (IsAuthenticated,)
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    def get_queryset(self):
-        serializer_class = ProductSerializer
-        pdata = {'status':200,'response':serializer_class.data,'msg':"product successfully displayed"}
-        return Response(pdata)""" 
-"""def hello(request):
-    today = datetime.datetime.now().date()
-    daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    return redirect("https://www.djangoproject.com")
-    #return render(request, "test.html", {"today" : today, "days_of_week" : daysOfWeek})
 
-def viewArticle(request, articleId):
-   text = "Displaying article Number : %s"%articleId
-   return HttpResponse(text)
-"""
 #the given view is used for mall list api view    
 class MallsList(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
@@ -261,20 +226,7 @@ def CreateOrder(request):
         co1data = {'status':501, 'msg':"Something happning wrong"}
         return Response(co1data)
 
-"""@api_view(['POST'])
-@permission_classes((AllowAny,))       
-def AddCart(request):
-    serialized = CartSerializer(data=request.data)
-    if serialized.is_valid():
-        serialized.save()
-        cdata = {'status':200,'msg':"Product successfully added in Cart"}
-        return Response(cdata) 
-    else:
-        c1data = {'status':501,'msg':"something happing wrong"}
-        return Response(c1data)"""
-    
-#filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
-#filter_fields = ('completed',)
+
 
 class OrderDeatilsView(generics.RetrieveAPIView):
     queryset = Order.objects.all()
@@ -313,15 +265,6 @@ def create_user(request,):
         return Response(s1data)
     
     
-"""class MallsFilterList(generics.ListAPIView):
-    queryset = Mall.objects.all()
-    serializer_class  = MallSerializer
-    filter_backends = (filters.backends)
-    
-class MallFilterList(filters.FilterSet):
-    class Meta:
-        model = Mall
-        fields = {'MName':['exact', 'in', 'startswith']}"""
 
 ##the given view is used for user login        
 @api_view(["POST"])
@@ -364,18 +307,6 @@ def login_user(request):
     return Response(l1data)
         
 
-"""class UserLogin(APIView):
-    authentication_classes = (TokenAuthentication, SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
-    
-    def get(self, request, format=None):
-         content = {
-        'user': str(request.user),
-        'auth': str(request.auth),  
-        }
-         ldata = {'status':201,'response':content,'msg':_("sucess")}
-         return Response(ldata)"""
-
 ##the given view is used for update user password
 #@login_required
 class UpdatePassword(APIView):
@@ -414,62 +345,9 @@ class UpdatePassword(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-"""class Login(APIView):
-    permission_classes = (permissions.IsAuthenticated, )
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
 
-    def get_object(self, queryset=None):
-        return self.request.user
-
-    def put(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        serializer = UserLoginSerializer(data=request.data)
-
-        if serializer.is_valid():
-            # Check old password
-            username = serializer.data.get("username")
-            password = serializer.data.get("username")
-            if not self.object.check_username(username):
-                return Response({"username": ["Wrong username."]}, 
-                                status=status.HTTP_400_BAD_REQUEST)
-            if not self.object.check_username(password):
-                return Response({"password": ["Wrong password."]}, 
-                                status=status.HTTP_400_BAD_REQUEST)
-                return user"""
                            
-"""def Usersignup(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        udata = {'status':200,'response':user,'msg':_("login success")}
-        return Response(udata)
-        # Redirect to a success page.
-    else:
-        if user is not None:
-            if user.is_active:
-                udata = {'status':201,'response':user,'msg':_("login success")}
-                login(request, user)
-                return Response(udata)
-            else:
-                u1data= {'status':401,'response':user,'msg':_("login success")}
-                return Response(u1data)
-        else:
-            u1data= {'status':402,'response':user,'msg':_("login success")}
-            return Response(u1data)
-    #if user is not None:
-        #if user.is_active:
-            #login(request, user)
-            
-            # Redirect to a success page.
-        #else:
-            # Return a 'disabled account' error message
-    #else:
-        # Return an 'invalid login' error message."""
-        
+    
         
 class WishListCreate(generics.ListCreateAPIView):
     queryset = WishList.objects.all()
@@ -482,13 +360,7 @@ class RemoveFromWishList(generics.DestroyAPIView):
     queryset = WishList.objects.all()
     serializer_class  = WishListSerializer
     
-"""class CartCreate(generics.ListCreateAPIView):
-    queryset = Cart.objects.all()
-    serializer_class  = CartSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save()"""
-    
+   
     
 class ResetPasswordRequestView(FormView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -604,76 +476,7 @@ class UserList(generics.ListCreateAPIView):
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
              
-"""def Usersignup(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        udata = {'status':200,'response':user,'msg':_("login success")}
-        return Response(udata)
-        # Redirect to a success page.
-    else:
-        if user is not None:
-            if user.is_active:
-                udata = {'status':201,'response':user,'msg':_("login success")}
-                login(request, user)
-                return Response(udata)
-            else:
-                u1data= {'status':401,'response':user,'msg':_("login success")}
-                return Response(u1data)
-        else:
-            u1data= {'status':402,'response':user,'msg':_("login success")}
-            return Response(u1data)
-    #if user is not None:
-        #if user.is_active:
-            #login(request, user)
-            
-            # Redirect to a success page.
-        #else:
-            # Return a 'disabled account' error message
-    #else:
-        # Return an 'invalid login' error message."""
-#auth token authentication       
-"""@api_view(["POST"])
-def login1(request):
-    #authentication_classes = (TokenAuthentication, SessionAuthentication, BasicAuthentication)
-    #permission_classes = (IsAuthenticated,)
-    username = request.data.get("username")
-    password = request.data.get("password")
-
-    user = authenticate(username=username, password=password)
-    if not user:
-        return Response({"error": "Login failed"}, status=HTTP_401_UNAUTHORIZED)
-
-    token= Token.objects.get_or_create(user=user)
-    return Response({"token": token.key})"""
-"""def user_login(request):
-    context = RequestContext(request)
-    if request.method == 'POST':
-          username = request.POST['username']
-          password = request.POST['password']
-          user = authenticate(username=username, password=password)
-          if user is not None:
-              if user.is_active:
-                  login(request, user)
-                  # Redirect to index page.
-                  return HttpResponseRedirect("rango/")
-              else:
-                  # Return a 'disabled account' error message
-                  return HttpResponse("You're account is disabled.")
-          else:
-              # Return an 'invalid login' error message.
-              print  "invalid login details " + username + " " + password
-              return render_to_response('login.html', {}, context)
-    else:
-        # the login is a  GET request, so just show the user the login form.
-        return render_to_response('login.html', {}, context)"""
-        
-"""class userprofileCreate(generics.ListCreateAPIView):
-    queryset = UserProfile.objects.get(user_id=31)
-    serializer_class  = UserProfileSerializer"""
-    
+   
     
 @api_view(['GET'])
 def current_product(request):
@@ -684,71 +487,7 @@ def current_product(request):
         'id': product.id,
         'response': serializer.data
     })
-"""class prodview(generics.RetrieveAPIView):
-    permission_classes = (IsAuthenticated,)
-    #queryset = Product.objects.all()
-    serializer_class  = ProductSerializer
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['latest_product'] = Product.objects.all()[:5]
-        ldata = {'status':200, 'msg':"User Successfully Logged"}
-        return Response(ldata)"""
-
-
-"""class MallViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Mall.objects.all()
-    serializer_class = MallSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('MName',)"""
-    
-"""class  productdetails12345(APIView): 
-    def get_object(self, pk):
-        try:
-            #product = Product.objects.get(pk=pk)
-            #pdata = {'status':200,'response':product.data,'msg':"Product Successfully viewed"}
-            return Product.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-     
-    def get_p(self, request, pk, format=None):
-        permission_classes = (IsAuthenticated,)
-        product = self.get_object(pk)
-        product = ProductSerializer(product)
-        pdata = {'status':200,'response':product.data,'msg':"Product Successfully viewed"}        
-        return Response(pdata)
-    
-@api_view(["GET"])
-@permission_classes((AllowAny,))   
-def get(self, request, pk, format=None):
-    product = self.get_object(pk)
-    product = ProductSerializer(product)
-    return Response(product.data)"""
-
-"""class UserView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
-    queryset = User.objects.all()
-    serializer_class  = UserSerializer
-    
-    def list(self, request):
-        queryset = self.get_queryset()
-        serializer = UserSerializer(queryset, many=True)
-        #user1 = UserProfile.objects.get(pk = request.user.pk)
-        #userdata = {'full_name':user1.full_name, 'address':user1.address, 'phone_number':user1.phone_number}
-        mdata = {'status':200,'response':serializer.data,'msg':"user successfully displayed"}
-        return Response(mdata)"""
-        
-"""@api_view(["GET"])
-@permission_classes((AllowAny,))  
-def UserView1(request):
-    #permission_classes = (IsAuthenticated,)
-    queryset = User.objects.all()
-    serializer  = UserSerializer
-    if serializer.is_valid():
-        mdata = {'status':200,'response':serializer.data,'msg':"user successfully displayed"}
-        return Response(mdata)"""
-    
-    
+   
     
 @api_view(['GET', 'PUT', 'DELETE'])
 def User_detail(request, pk):
